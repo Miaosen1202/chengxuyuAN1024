@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		#baiyechuang{
+			width: 560px;
+			height: 300px;
+			margin: 100px auto;
+			position: relative;
+		}
+		#baiyechuang ul{
+			list-style: none;
+		}
+		#baiyechuang ul.tuul li{
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: none;
+		}
+		#baiyechuang ul.tuul li.no1{
+			display: block;
+		}
+
+		#baiyechuang .anniu .left_but{
+			display: block;
+			width: 45px;
+			height: 45px;
+			background: url(images/icons.png) no-repeat 0 0;
+			position: absolute;
+			left: 10px;
+			top: 120px;
+			cursor: pointer;
+		}
+		#baiyechuang .anniu .right_but{
+			display: block;
+			width: 45px;
+			height: 45px;
+			background: url(images/icons.png) no-repeat 0 -45px;
+			position: absolute;
+			right: 10px;
+			top: 120px;
+			cursor: pointer;
+		}
+		#baiyechuang .dianul{
+			list-style: none;
+			position: absolute;
+			bottom: 10px;
+			right: 10px;
+		}
+		#baiyechuang .dianul li{
+			float: left;
+			width: 14px;
+			height: 14px;
+			_font-size:0;
+			background: url(images/icons.png) no-repeat -23px -125px;
+			margin-right: 6px;
+			cursor: pointer;
+		}
+		#baiyechuang .dianul li.cur{
+			background-position: -9px -125px;
+		}
+		#baiyechuang .maoni{
+			width: 560px;
+			height: 300px;
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		#baiyechuang .maoni div{
+			width: 0px;
+			height: 300px;
+			top: 0;
+			position: absolute;
+			background-image: none;
+		}
+		#baiyechuang .maoni .no0{
+			right: 490px;
+			background-position: 0 0;
+		}
+		#baiyechuang .maoni .no1{
+			right: 420px;
+			background-position: -70px 0;
+		}
+		#baiyechuang .maoni .no2{
+			right: 350px;
+			background-position: -140px 0;
+		}
+		#baiyechuang .maoni .no3{
+			right: 280px;
+			background-position: -210px 0;
+		}
+		#baiyechuang .maoni .no4{
+			right: 210px;
+			background-position: -280px 0;
+		}
+		#baiyechuang .maoni .no5{
+			right: 140px;
+			background-position: -350px 0;
+		}
+		#baiyechuang .maoni .no6{
+			right: 70px;
+			background-position: -420px 0;
+		}
+		#baiyechuang .maoni .no7{
+			right: 0px;
+			background-position: -490px 0;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function() {
+				var nowimg = 0;
+				var mytimer = 0;
+				dongdong();
+				//设置定时器
+				function dongdong(){
+					window.clearInterval(mytimer);
+					mytimer = window.setInterval(
+						function(){
+							$(".right_but").trigger("click");
+						}
+						,1000
+					);
+				}
+
+				$("#baiyechuang").mouseenter(
+					function(){
+						window.clearInterval(mytimer);
+					}
+				);
+
+				$("#baiyechuang").mouseleave(dongdong);
+
+				$(".right_but").click(
+					function(){
+						// 先折腾信号量
+						if(nowimg < $(".tuul li").length - 1){
+							nowimg ++;
+						}else{
+							nowimg = 0;
+						}
+						huanhuan();
+					}
+				);
+
+				$(".dianul li").click(
+					function(){
+						nowimg = $(this).index();
+						huanhuan();
+					}
+				);
+
+				$(".left_but").click(
+					function(){
+						if(nowimg > 0){
+							nowimg -- ;
+						}else{
+							nowimg = $(".tuul li").length - 1;
+						}
+
+						huanhuan();
+					}
+				);
+
+				function huanhuan(){
+					// 换猫腻的图片，换成信号量所表示的li中的那个图片
+					var temp = $(".tuul li a img").eq(nowimg).attr("src");
+					$(".maoni div").css("background-image","url(" + temp + ")");
+
+					// 让猫腻图进行动画！
+					$(".maoni div").animate({"width":70},400,function(){
+						//在动画执行完毕之后，让猫腻的宽度恢复为0
+						$(".maoni div").css("width",0);
+						$(".tuul li").eq(nowimg).show().siblings().hide();
+					});
+					$(".dianul li").eq(nowimg).addClass("cur").siblings().removeClass("cur");
+				}
+			}
+		);
+	</script>
+</head>
+<body>
+	<div id="baiyechuang">
+		<ul class="tuul">
+			<li class="no1"><a href="#"><img src="images/0.jpg"/></a></li>
+			<li><a href="#"><img src="images/1.jpg"/></a></li>
+			<li><a href="#"><img src="images/2.jpg"/></a></li>
+			<li><a href="#"><img src="images/3.jpg"/></a></li>
+			<li><a href="#"><img src="images/4.jpg"/></a></li>
+		</ul>
+		<div class="maoni">
+			<div class="no0" ></div>
+			<div class="no1" ></div>
+			<div class="no2" ></div>
+			<div class="no3" ></div>
+			<div class="no4" ></div>
+			<div class="no5" ></div>
+			<div class="no6" ></div>
+			<div class="no7" ></div>
+		</div>
+
+		<div class="anniu">
+			<a class="left_but" id="left_but"></a>
+			<a class="right_but" id="right_but"></a>
+		</div>
+		<ul class="dianul">
+			<li class="cur"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>
