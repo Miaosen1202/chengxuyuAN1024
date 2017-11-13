@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;}
+        ul,li{list-style: none;}
+        .con {
+            width: 500px;
+            margin: 0 auto;
+        }
+        .con li {
+            height: 40px;
+            overflow: hidden;
+            background: #f0f0f0;
+        }
+        
+        .con h3 {
+            padding: 10px;
+            height: 19px;
+            background: #ccc;
+            cursor: pointer;
+            position:relative;
+        }
+        /* 小三角 */
+        .con h3:before {
+            content:"";
+            border: 5px solid #000;
+            border-color: #000 transparent transparent;
+            position: absolute;
+            right: 10px;
+            top: 15px;
+            width: 0;
+            height: 0;
+        }
+        
+        .con div {
+            overflow: auto;
+            height: 220px;
+        }
+
+        .con li:hover {
+            height: 200px;
+        }
+        
+        .con li:hover h3 {
+            color: #fff;
+            background: #000;
+        }
+        
+        .con li:hover h3:before {
+            border-color: transparent transparent transparent #fff;
+        }
+
+        .con li {
+            transition: height 0.3s ease-in-out;
+        }
+        .con li:hover h3 {
+            background: -webkit-linear-gradient( top, #454545, #000000);
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+            <ul>
+                <li>
+                    <h3>标题 1</h3>
+                    <div>面板内容 1.</div>
+                </li>
+                <li>
+                    <h3>标题 2</h3>
+                    <div>面板内容 2.</div>
+                </li>
+                <li>
+                    <h3>标题 3</h3>
+                    <div>面板内容 3.</div>
+                </li>
+                <li>
+                    <h3>标题 4</h3>
+                    <div>面板内容 4.</div>
+                </li>
+            </ul>
+        </div>
+</body>
+</html>

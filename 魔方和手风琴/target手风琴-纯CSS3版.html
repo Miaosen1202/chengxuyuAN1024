@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{margin: 0;padding: 0;font-size: 13px;}
+        .con {
+            width: 500px;
+            margin:50px auto;
+        }
+        .con h2 {
+            position: relative;
+        }
+        /* 小三角 */
+        .con h2::before {
+            content:"";
+            border: 5px solid #fff;
+            border-color: #fff transparent transparent;
+            width: 0;
+            height: 0;
+            position:absolute;
+            right: 10px;
+            top: 15px;
+        } 
+        .con h2 a {
+            display: block;
+            text-decoration:none;
+            padding:10px;
+            background: -webkit-linear-gradient( top, #cecece, #8f8f8f); 
+            border-radius: 5px;
+        }
+        .con p {
+            height: 0;
+            overflow: hidden;
+            transition: height 0.5s ease-in;
+        }
+        .con :target h2 a,
+        .con h2 a:hover {
+            background: -webkit-linear-gradient( top, #6bb2ff, #2288dd);
+        }
+        .con :target p {
+            overflow: auto;
+            height:100px;
+            background: pink;
+        }
+        .con :target h2:before {
+            border-color: transparent transparent transparent #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <div id="event1">
+            <h2><a href="#event1">手风琴菜单</a></h2>
+            <p>内容</p>
+        </div>
+        <div id="event2">
+            <h2><a href="#event2">手风琴菜单</a></h2>
+            <p>内容</p>
+        </div>
+        <div id="event3">
+            <h2><a href="#event3">手风琴菜单</a></h2>
+            <p>内容</p>
+        </div>
+    </div>
+</body>
+</html>
