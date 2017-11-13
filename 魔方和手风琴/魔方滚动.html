@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .box{
+            width:300px;
+            height:300px;
+            position:relative;
+            margin:100px auto;
+            transform-style:preserve-3d;
+            transform:rotateX(-30deg) rotateY(-30deg);
+            animation:run 3s linear infinite alternate;
+        }
+        @-webkit-keyframes run{
+                    from{
+                        transform:rotateX(-30deg) rotateY(-30deg);
+                    }
+                    to{
+                        transform:rotateX(180deg) rotateY(180deg);
+                    }
+                }
+        .box>div{
+            width:100%;
+            height:100%;
+            position:absolute;
+            top:0;
+            left:0;
+            opacity:0.5;
+        }
+        .top{
+            /*background:red;*/
+            transform:rotateX(90deg) translateZ(150px);
+        }
+         .bottom{
+            /*background:green;*/
+            transform:rotateX(90deg) translateZ(-150px);
+        }
+        .left{
+           /* background:blue;*/
+            transform:rotateY(90deg) translateZ(-150px);
+        }
+         .right{
+           /* background:pink;*/
+            transform:rotateY(90deg) translateZ(150px);
+        }
+        .go{
+            /*background:yellow;*/
+            transform:translateZ(150px);
+        }
+        .back{
+           /* background:orange;*/
+            transform:translateZ(-150px);
+        }
+        li{
+            width:100px;
+            height: 100px;
+            float: left;
+            position:relative;
+            top:0;
+            left:0;
+            border:1px solid #fff;
+            box-sizing:border-box;
+
+        }
+
+        
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="top"></div>
+        <div class="bottom"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+        <div class="go"></div>
+        <div class="back"></div>
+    </div>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+        $(function(){
+             var arr = ['pink',"deeppink","yellow","greenyellow","blue","red"];
+             //循环6个面,通过each函数给没个面添加颜色
+             $(".box>div").each(function(index,item){
+                //创建ul标签
+                var ul = $("<ul></ul>");
+                for(var i = 0;i<9;i++){
+                    var li = $("<li></li>");
+                    li.css("background",arr[index]);
+                    ul.append(li);
+                }
+                $(item).append(ul);
+                // $(item).css("background",arr[index])
+             })
+             var loader = [];
+             for(var i = 0;i<54;i++){
+                loader.push(parseInt(Math.random()*380))
+             }
+             $("li").each(function(index,item){
+                $(item).css({"top":loader[index],"left":loader[index]})
+             })
+             $("li").each(function(index,item){
+                $(item).animate({"left":0,"top":0},3000)
+             })
+
+
+        })
+
+
+    </script>
+</body>
+</html>
