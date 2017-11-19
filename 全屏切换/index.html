@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css3 动画</title>
+	<style>
+		html,body{
+			height:100%;
+			overflow: hidden;
+		}
+		body{
+			margin: 0;
+			padding: 0;
+			position: relative;
+		}
+		.handle{
+			width: 100%;
+			height: 100%;
+			list-style: none;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.handle li{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.handle li:nth-child(1){
+			z-index: 3;
+			background: url(images/bg1.jpg);
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+		.handle li:nth-child(2){
+			z-index: 2;
+			background: url(images/bg2.jpg);
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+		.handle li:nth-child(3){
+			z-index: 1;
+			background: url(images/bg3.jpg);
+			-webkit-background-size: cover;
+			background-size: cover;
+		}
+		.btn {
+			position: absolute;
+			bottom: 60px;
+			height: 100px;
+			width: 100%;
+			z-index: 5;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.btn li{
+			height: 80px;
+			width: 80px;
+			margin-left: 20px;
+			line-height: 80px;
+			background-color: pink;
+			border-radius: 40px;
+			text-align: center;
+			font-size: 30px;
+		}
+		.btn li a {
+			display: block;
+			text-decoration: none;
+			color: #000;
+		}
+		#img1:target {
+			z-index: 3;
+			animation: moves 1s linear;
+		}
+		#img2:target {
+			z-index: 3;
+			animation: rotate 1s linear;
+		}
+		#img3:target {
+			z-index: 3;
+			animation: down 1s linear;
+		}
+		@keyframes moves {
+			0%{
+				transform: translateX(-100%);
+			}
+			100%{
+				transform: translateX(0);
+			}
+		}
+		@keyframes rotate {
+			0%{
+				transform: scale(0) rotate(0deg);
+			}
+			100%{
+				transform: scale(1) rotate(360deg);
+			}
+		}
+		@keyframes down {
+			0%{
+				transform: translateY(-100%) skew(20deg, 30deg);
+			}
+			100%{
+				transform: translateY(0) skew(0deg,0deg);
+			}
+		}
+	</style>
+</head>
+<body>
+	<ul class="handle">
+		<li id="img1"></li>
+		<li id="img2"></li>
+		<li id="img3"></li>
+	</ul>
+
+	<ul class="btn">
+		<li>
+			<a href="#img1">1</a>
+		</li>
+		<li>
+			<a href="#img2">2</a>
+		</li>
+		<li>
+			<a href="#img3">3</a>
+		</li>
+	</ul>
+</body>
+</html>
